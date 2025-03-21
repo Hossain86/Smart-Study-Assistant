@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
+body{
+  margin: 0px;
+  padding:0px;
+}
+.app-container{
+  font-family: 'Roboto', sans-serif;
+  transition: transform 0.3s ease-in-out;
+  margin: 0px;
+  padding: 0px;
+}
+
+.all-responive-img{
+  border-radius: 10px !important;
+  max-height: min(300px, 60vw); /* Scales up to 600px but never exceeds 90% of viewport width */
+  min-height: 150px;
+  width: auto;
+}
+.all-p-text{
+  margin: 0px;
+  line-height: 1.8;
+  font-size: clamp(12px, 1.5vw, 14px);
+}
+.all-h-text{
+  margin: 0px;
+  line-height: 1.8;
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+/* Make sure the app container covers the full height */
+main {
+  min-height:fit-content !important; /* At least the full viewport height */
+  width: 100%;
+}
+.gif-image{
+  height: min(80px, 15vw);
+}
+.list-item{
+  list-style: none !important;
+  line-height: 1.8;
+}
+
+/* Light Mode Styles */
+.light-mode {
+  background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
+  color: #000;
+  height: 100vh; /* Make sure it covers the whole viewport */
+}
+
+.light-mode .sidebar {
+  background: #f8f9fa; /* Light sidebar background */
+  color: #000;
+}
+
+.light-mode button {
+  color: #000;
+}
+.light-mode h1,h2,h5,h3{
+  background-image: linear-gradient(to right, #16222A 0%, #3A6073 51%, #16222A 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.light-mode h2,h5,h3{
+  background-image: linear-gradient(to right, #16222A 0%, #3A6073 51%, #16222A 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+/* Dark Mode Styles */
+.dark-mode {
+  background: #141E30;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  color: #fff;
+  height: 100vh; /* Ensure it covers the whole page */
+}
+
+.dark-mode .sidebar {
+  background: #333; /* Dark sidebar background */
+  color: #fff;
+}
+
+.dark-mode button {
+  color: #fff;
+}
+.dark-mode h1,h2,h3,h5{
+  background-image: radial-gradient(circle farthest-corner at 3.7% 49.8%, rgba(143,232,255,1) 21.9%, rgba(209,243,251,1) 52.9%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Smooth transition for theme change */
+.light-mode,
+.dark-mode {
+  transition: background-color 1s ease, color 1s ease, background 1s ease;
+}
+
+
+/* Gradient Button Styles */
+.btn-grad-blue-ash {background-image: linear-gradient(to right, #16222A 0%, #3A6073 51%, #16222A 100%);}
+.btn-grad-orange {background-image: linear-gradient(to right, #ff5733 0%, #ff5733 51%, #EC6F66 100%);}
+.btn-grad-blue {background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%);}
+.btn-grad-ash {background-image: linear-gradient(to right, #485563 0%, #29323c 51%, #485563 100%);}
+.btn-grad-black {background-image: linear-gradient(to right, #000000 0%, #434343 51%, #000000 100%);}
+.btn-grad-blue2 {background-image: radial-gradient(circle 950px at 2.5% 8%, rgba(44,103,176,1) 0%, rgba(35,56,136,1) 90%);}
+.btn-grad-green {background-image: radial-gradient(circle farthest-corner at 96.1% 7.2%, rgba(9,178,62,1) 0%, rgba(19,19,19,1) 100.2%);}
+.btn-grad-blue-ash2 {background-image: linear-gradient(90.1deg, rgba(8,81,98,1) 14.5%, rgba(198,231,249,1) 135.4%);}
+.btn-grad-light-blue {background-image: radial-gradient(circle farthest-corner at 3.7% 49.8%, rgba(143,232,255,1) 21.9%, rgba(209,243,251,1) 52.9%);}
+.btn-grad-black2 {
+  background: #000000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.btn-grad-black3 {
+  background: #232526;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.btn-grad-red{
+  background-image: linear-gradient(to right, #EB3349 0%, #F45C43  51%, #EB3349  100%);
+}
+.btn-grad-pink{
+  background-image: linear-gradient(to right, #EC6F66 0%, #F3A183  51%, #EC6F66  100%);  
+}
+
+/* Common Button Styles */
+.btn-grad-blue-ash, .btn-grad-orange, .btn-grad-blue, .btn-grad-ash, .btn-grad-black, .btn-grad-blue2, 
+.btn-grad-green, .btn-grad-blue-ash2, .btn-grad-light-blue, .btn-grad-black2, .btn-grad-black3, .btn-grad-red,.btn-grad-pink {
+  margin: 0px;
+  padding: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #fff;
+  box-shadow: 0 0 10px #eee;
+  border-radius: 8px;
+  border: none; /* No border */
+  cursor: pointer; /* Makes the button clickable */
+}
+/* Hover Effect */
+.btn-grad-blue-ash:hover, .btn-grad-orange:hover, .btn-grad-blue:hover, .btn-grad-ash:hover, 
+.btn-grad-black:hover, .btn-grad-blue2:hover, .btn-grad-green:hover, .btn-grad-blue-ash2:hover, 
+.btn-grad-light-blue:hover, .btn-grad-black2:hover, .btn-grad-black3:hover , .btn-grad-red:hover, .btn-grad-pink:hover{
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+/* Gradient Text Styles */
+.text-grad-blue-ash {
+  background-image: linear-gradient(to right, #16222A 0%, #3A6073 51%, #16222A 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-orange {
+  background-image: linear-gradient(to right, #EC6F66 0%, #F3A183 51%, #EC6F66 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-blue {
+  background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-ash {
+  background-image: linear-gradient(to right, #485563 0%, #29323c 51%, #485563 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-black {
+  background-image: linear-gradient(to right, #000000 0%, #434343 51%, #000000 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-blue2 {
+  background-image: radial-gradient(circle 950px at 2.5% 8%, rgba(44,103,176,1) 0%, rgba(35,56,136,1) 90%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-green {
+  background-image: radial-gradient(circle farthest-corner at 96.1% 7.2%, rgba(9,178,62,1) 0%, rgba(19,19,19,1) 100.2%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-blue-ash2 {
+  background-image: linear-gradient(90.1deg, rgba(8,81,98,1) 14.5%, rgba(198,231,249,1) 135.4%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-light-blue {
+  background-image: radial-gradient(circle farthest-corner at 3.7% 49.8%, rgba(143,232,255,1) 21.9%, rgba(209,243,251,1) 52.9%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-black2 {
+  background: linear-gradient(to right, #434343, #000000);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-grad-black3 {
+  background: linear-gradient(to right, #414345, #232526);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/*
+  .btn-grad-ash
+  .btn-grad-blue-ash
+  .btn-grad-blue-ash2
+  .btn-grad-blue
+  .btn-grad-blue2
+  .btn-grad-black
+  .btn-grad-black2
+  .btn-grad-black3
+  .btn-grad-green
+  .btn-grad-light-blue
+  .btn-grad-orange
+*/
