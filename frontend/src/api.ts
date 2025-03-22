@@ -36,3 +36,15 @@ export const generateQuestions = async (file: File, questionType: "mcq" | "narra
     throw new Error("Failed to generate questions.");
   }
 };
+export const generateLabReport = async (topic: string) => {
+  try {
+    const response = await axios.post(`${API_URL}/generate-lab-report`, { topic });
+    
+    console.log("API Response:", response); // Debugging line
+
+    return response.data;
+  } catch (error) {
+    console.error("Error generating lab report:", error);
+    throw new Error("Failed to generate the lab report.");
+  }
+};

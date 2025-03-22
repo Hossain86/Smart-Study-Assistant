@@ -10,8 +10,7 @@ const Sidebar: React.FC = () => {
 
 
   return (
-    <div className="position-relative">
-      <div className=" new-class">
+      <div className="new-class">
         <img
           className="h-7 img-fluid custom-logo cursor-pointer"
           src="https://media.giphy.com/media/mrkk6ctjilhoKnFH8d/giphy.gif?cid=790b7611vla8d1bmshd9ce8spgelpl2jojdnpzdyti54ewqh&ep=v1_stickers_search&rid=giphy.gif&ct=s"
@@ -33,7 +32,6 @@ const Sidebar: React.FC = () => {
           <b>{isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}</b>
         </button>
       </div>
-    </div>
   );
 };
 

@@ -3,20 +3,43 @@ import fitz  # PyMuPDF
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
+from assignment_generator import assignment_gen
 from mcq_generator import generateMCQ
 from narrative_generator import generateOpenEnded
 
-# Load API key from .env file
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app) 
 
 def extractText(pdf_path):
     """Extract full text from a given PDF file."""
     doc = fitz.open(pdf_path)
     text = "\n".join([page.get_text("text") for page in doc])
     return text.strip()
+
+@app.route("/extract-text", methods=["POST"])
+def extract_text_endpoint():
+    """API endpoint to extract and return the text from an uploaded PDF."""
+    
+    if 'pdf' not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+
+    pdf_file = request.files['pdf']
+
+    if pdf_file.filename == "":
+        return jsonify({"error": "Empty filename"}), 400
+
+    pdf_path = "temp.pdf"
+    pdf_file.save(pdf_path)
+    extracted_text = extractText(pdf_path)
+
+    os.remove(pdf_path)
+
+    if not extracted_text.strip():
+        return jsonify({"error": "No text found in PDF"}), 400
+
+    return jsonify({"extracted_text": extracted_text})
 
 @app.route('/')
 def home():
@@ -50,28 +73,31 @@ def generate_questions():
 
     return jsonify(result)
 
-@app.route("/extract-text", methods=["POST"])
-def extract_text_endpoint():
-    """API endpoint to extract and return the text from an uploaded PDF."""
+
+@app.route("/generate-lab-report", methods=["POST"])
+def generate_Lab_Report():
+    """API endpoint to generate a lab report from a given topic."""
+    if not request.is_json:
+        return jsonify({"error": "Invalid request. JSON data expected."}), 400
     
-    if 'pdf' not in request.files:
-        return jsonify({"error": "No file uploaded"}), 400
+    data = request.get_json()
+    topic = data.get("topic")
+    if not topic:
+        return jsonify({"error": "Missing topic"}), 400
+    print(f"Received request for Lab Report on: {topic}")
+    lab_report = assignment_gen(topic)
+    if "error" in lab_report:
+        return jsonify({"error": lab_report["error"]}), 500
 
-    pdf_file = request.files['pdf']
+    return jsonify(lab_report)
 
-    if pdf_file.filename == "":
-        return jsonify({"error": "Empty filename"}), 400
 
-    pdf_path = "temp.pdf"
-    pdf_file.save(pdf_path)
-    extracted_text = extractText(pdf_path)
 
-    os.remove(pdf_path)
-
-    if not extracted_text.strip():
-        return jsonify({"error": "No text found in PDF"}), 400
-
-    return jsonify({"extracted_text": extracted_text})
+@app.route('/submit', methods=['POST'])
+def submit_data():
+    data = request.get_json()
+    print(data)
+    return jsonify({"message": "Data received!", "data": data})
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -47,11 +47,11 @@ const Home: React.FC = () => {
                 <div className="feature-icon">
                   <ClipboardList size={50} />
                 </div>
-                <Card.Title>Assignment Generator</Card.Title>
+                <Card.Title>Assignment Or Lab Report Generator</Card.Title>
                 <Card.Text>
-                  Generate high-quality assignments in minutes with AI-powered assistance.
+                  Generate high-quality assignments or lab report in minutes with AI-powered assistance.
                 </Card.Text>
-                <Button variant="success" onClick={() => navigate(`/pdfToqa`)}>Generate Assignment</Button>
+                <Button variant="success" onClick={() => navigate(`/lab-report-generator`)}>Generate Assignment</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
                 <div className="feature-icon">
                   <Edit size={50} />
                 </div>
-                <Card.Title>Essay/Report Generator</Card.Title>
+                <Card.Title>Essay or Paragraph Generator</Card.Title>
                 <Card.Text>
                   Generate structured essays or reports based on given topics.
                 </Card.Text>
@@ -82,7 +82,7 @@ const Home: React.FC = () => {
                 <Card.Text>
                   Summarize long documents or textbooks into concise, digestible summaries.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/summarizer`)}>Try Now</Button>
+                <Button  variant="success" onClick={() => navigate(`/summarizer`)}>Try Now</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -112,7 +112,7 @@ const Home: React.FC = () => {
                 <Card.Text>
                   Enhance your assignments or essays with grammar, spelling, and style suggestions.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/grammarCheck`)}>Try Now</Button>
+                <Button  variant="success" onClick={() => navigate(`/grammarCheck`)}>Try Now</Button>
               </Card.Body>
             </Card>
           </Col>

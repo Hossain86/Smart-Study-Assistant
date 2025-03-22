@@ -5,6 +5,8 @@ import './App.css'
 import HomePage from "./components/HomePage";
 import { ThemeProvider, useTheme } from "./layouts/ThemeContext";
 import Sidebar from "./layouts/Sidebar";
+import Test from "./components/test";
+import LabReportGenerator from "./components/Lab-Report/LabReportGenerator";
 
 
 const App = () => {
@@ -31,6 +33,8 @@ const MainApp = () => {
             <QuestionGenerator />
          } />
           <Route path="/" element={<HomePage/>}/>
+          <Route path="/lab-report-generator" element={<LabReportGenerator />}/>
+          <Route path="/submit" element={ <Test/> }/>
         </Routes>
       </main>
     </div>

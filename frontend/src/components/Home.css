@@ -1,15 +1,14 @@
 .home-container {
-  padding: 50px 0;
+  padding: 40px 0;
   width: 100%;
 }
-
 .card-container{
   background-color: none;
 }
 .hero-section {
   padding: 50px;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .hero-title {
@@ -28,7 +27,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
   border: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .feature-card:hover {
