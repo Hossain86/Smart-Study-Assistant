@@ -76,7 +76,7 @@ PyMuPDF==1.25.3
 pyOpenSSL==24.1.0
 pyparsing==3.1.4
 PyPDF2==2.12.1
-pypiwin32==223
+pypiwin32==223; platform_system=="Windows"
 pypng==0.20220715.0
 pyserial==3.5
 python-dateutil==2.8.2
