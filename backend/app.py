@@ -3,7 +3,7 @@ import os
 import io
 import tempfile
 from flask import Flask, request, jsonify, send_file
-import fitz  # PyMuPDF
+import fitz 
 from dotenv import load_dotenv
 from flask_cors import CORS
 from docx import Document

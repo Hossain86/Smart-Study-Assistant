@@ -14,3 +14,45 @@
 .extext{
   text-align: justify;
 }
+.coverpage-inputs{
+  display: grid;
+  width: 95%;
+  margin: 0 auto;
+  padding: 0px; /* Max 50px, but scales down with viewport */
+}
+.input-label-section{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.all-inputs{
+  display: flex;
+  gap: 10px;
+  margin: 0px;
+  justify-content: center;
+  text-align: center;
+  justify-self: center;
+  align-items: center;
+  justify-items: center;
+}
+.form-label{
+  font-size: 15px;
+  margin: 0px;
+  margin-right: 5px;
+  font-weight: bold;
+}
+.new{
+  margin-bottom: 100px;
+}
+@media (max-width: 768px) {
+  .coverpage-inputs{
+    width: 100%;
+  }
+  .input-label-section{
+    justify-content: center;
+  }
+  .all-inputs{
+    justify-content: center;
+  }
+}
