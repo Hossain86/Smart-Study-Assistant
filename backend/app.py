@@ -196,6 +196,24 @@ def final_docx():
     composer = Composer(coverpage_doc)
     composer.append(lab_report_doc)
 
+    from docx.shared import Inches
+    from docx.oxml.ns import qn
+
+    merged_doc = composer.doc
+    for section in merged_doc.sections[1:]:
+        # Set margins to 1 inch on all sides
+        section.top_margin = Inches(1)
+        section.bottom_margin = Inches(1)
+        section.left_margin = Inches(1)
+        section.right_margin = Inches(1)
+        
+        # Remove any background shading if present
+        sectPr = section._sectPr
+        shd = sectPr.find(qn('w:shd'))
+        if shd is not None:
+            sectPr.remove(shd)
+
+    # Save the updated merged document to a temporary file.
     with tempfile.NamedTemporaryFile(suffix=".docx", delete=False) as temp_final:
         composer.save(temp_final.name)
         temp_final.seek(0)
