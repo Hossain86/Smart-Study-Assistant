@@ -1,9 +1,16 @@
-from flask import Flask, request, jsonify
-import fitz  # PyMuPDF
+import re
 import os
+import io
+import tempfile
+from flask import Flask, request, jsonify, send_file
+import fitz  # PyMuPDF
 from dotenv import load_dotenv
 from flask_cors import CORS
-from assignment_generator import assignment_gen
+from docx import Document
+from docxcompose.composer import Composer
+from docxtpl import DocxTemplate
+from assignment_generator import assignment_gen, markdown_to_plain_text
+from coverpage_generator import generate_coverpage
 from mcq_generator import generateMCQ
 from narrative_generator import generateOpenEnded
 
@@ -91,8 +98,119 @@ def generate_Lab_Report():
 
     return jsonify(lab_report)
 
+@app.route("/lab-report-docx", methods=["POST"])
+def lab_report_docx():
+    """API endpoint to generate a DOCX file for the lab report from a given topic."""
+    if not request.is_json:
+        return jsonify({"error": "Invalid request. JSON data expected."}), 400
 
+    data = request.get_json()
+    topic = data.get("topic")
+    if not topic:
+        return jsonify({"error": "Missing topic"}), 400
 
+    print(f"Generating DOCX Lab Report for: {topic}")
+    # Generate lab report using assignment_gen function
+    lab_report_md = assignment_gen(topic)
+    if isinstance(lab_report_md, dict) and "error" in lab_report_md:
+        return jsonify({"error": lab_report_md["error"]}), 500
+
+    # Convert Markdown to plain text
+    plain_text = markdown_to_plain_text(lab_report_md)
+
+    # Create a DOCX document from the plain text
+    document = Document()
+    for line in plain_text.split('\n'):
+        document.add_paragraph(line)
+
+    # Save the document into an in-memory bytes buffer
+    file_buffer = io.BytesIO()
+    document.save(file_buffer)
+    file_buffer.seek(0)
+
+    # Send the DOCX file as a downloadable attachment
+    return send_file(
+        file_buffer,
+        as_attachment=True,
+        download_name="lab_report.docx",
+        mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    )
+
+@app.route("/final-docx", methods=["POST"])
+def final_docx():
+    """
+    API endpoint to generate a final DOCX that includes both a coverpage and a lab report.
+    Expects JSON with:
+      - topic: string
+      - cover_data: object containing coverpage fields (optional; defaults are provided)
+    """
+    if not request.is_json:
+        return jsonify({"error": "Invalid request. JSON data expected."}), 400
+
+    data = request.get_json()
+    topic = data.get("topic")
+    if not topic:
+        return jsonify({"error": "Missing topic"}), 400
+
+    # Extract coverpage data from the request; use defaults if not provided.
+    cover_data = data.get("cover_data", {})
+    defaults = {
+        "department": "Computer Science and Engineering",
+        "course_code": "CSE-1102",
+        "course_name": "Introduction to Programming Sessional",
+        "assignment_name": "Lab Report Assignment",
+        "date_of_submission": "01/01/2025",
+        "submitted_by_name": "Student Name",
+        "submitted_by_roll": "2103000",
+        "submitted_by_section": "A",
+        "submitted_by_series": "21",
+        "submitted_to": "Dr. Teacher"
+    }
+    for key, value in defaults.items():
+        if key not in cover_data or not cover_data[key]:
+            cover_data[key] = value
+
+    # 1. Generate Lab Report DOCX from markdown
+    lab_report_md = assignment_gen(topic)
+    if isinstance(lab_report_md, dict) and "error" in lab_report_md:
+        return jsonify({"error": lab_report_md["error"]}), 500
+
+    plain_text = markdown_to_plain_text(lab_report_md)
+    lab_report_doc = Document()
+    for line in plain_text.split('\n'):
+        lab_report_doc.add_paragraph(line)
+
+    # 2. Generate Coverpage DOCX using the coverpage template
+    coverpage_doc_tpl = generate_coverpage(cover_data, template_path="coverpage_template.docx")
+    # Save the rendered coverpage to a temporary file.
+    with tempfile.NamedTemporaryFile(suffix=".docx", delete=False) as temp_cover:
+        coverpage_doc_tpl.save(temp_cover.name)
+    
+    # 3. Save lab report document to a temporary file.
+    with tempfile.NamedTemporaryFile(suffix=".docx", delete=False) as temp_lab:
+        lab_report_doc.save(temp_lab.name)
+
+    # 4. Merge the two documents using docxcompose (preserving each document's formatting)
+    coverpage_doc = Document(temp_cover.name)
+    lab_report_doc = Document(temp_lab.name)
+    composer = Composer(coverpage_doc)
+    composer.append(lab_report_doc)
+
+    with tempfile.NamedTemporaryFile(suffix=".docx", delete=False) as temp_final:
+        composer.save(temp_final.name)
+        temp_final.seek(0)
+        final_data = temp_final.read()
+
+    # Return the final merged document as a downloadable file.
+    return send_file(
+        io.BytesIO(final_data),
+        as_attachment=True,
+        download_name="final_lab_report.docx",
+        mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    )
+
+    
+    
 @app.route('/submit', methods=['POST'])
 def submit_data():
     data = request.get_json()

@@ -1,0 +1,16 @@
+.generate-section{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.input-section{
+    display: flex;
+    flex-wrap: wrap;
+}
+.extext{
+  text-align: justify;
+}

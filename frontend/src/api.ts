@@ -48,3 +48,31 @@ export const generateLabReport = async (topic: string) => {
     throw new Error("Failed to generate the lab report.");
   }
 };
+
+export const downloadLabReportDocx = async (topic: string) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/lab-report-docx`,
+      { topic },
+      { responseType: "blob" } // Important: we want a blob to create a downloadable file.
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error downloading lab report DOCX:", error);
+    throw new Error("Failed to download the lab report DOCX.");
+  }
+};
+
+export const downloadFinalDocx = async (topic: string, coverData: any) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/final-docx`,
+      { topic, cover_data: coverData },
+      { responseType: "blob" }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error downloading final DOCX:", error);
+    throw new Error("Failed to download final DOCX.");
+  }
+};
