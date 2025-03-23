@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { FileText, ClipboardList, Edit, BookOpen, Flag } from "lucide-react"; // Alternative icons
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
@@ -30,7 +29,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <FileText size={50} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/File-text-icon.svg" alt="file-text-icon" width="50" />
                 </div>
                 <Card.Title>PDF to MCQ & Narrative Generator</Card.Title>
                 <Card.Text>
@@ -45,7 +44,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <ClipboardList size={50} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Clipboard_list_icon.svg" alt="clipboard-icon" width="50" />
                 </div>
                 <Card.Title>Assignment Or Lab Report Generator</Card.Title>
                 <Card.Text>
@@ -61,7 +60,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Edit size={50} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Edit-icon.svg" alt="edit-icon" width="50" />
                 </div>
                 <Card.Title>Essay or Paragraph Generator</Card.Title>
                 <Card.Text>
@@ -76,13 +75,13 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <BookOpen size={50} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Book-open-icon.svg" alt="book-open-icon" width="50" />
                 </div>
                 <Card.Title>Summarization Tool</Card.Title>
                 <Card.Text>
                   Summarize long documents or textbooks into concise, digestible summaries.
                 </Card.Text>
-                <Button  variant="success" onClick={() => navigate(`/summarizer`)}>Try Now</Button>
+                <Button variant="success" onClick={() => navigate(`/summarizer`)}>Try Now</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -91,7 +90,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Flag size={50} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flag-icon.svg" alt="flag-icon" width="50" />
                 </div>
                 <Card.Title>Topic Explanation</Card.Title>
                 <Card.Text>
@@ -106,13 +105,13 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Edit size={50} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Edit-icon.svg" alt="edit-icon" width="50" />
                 </div>
                 <Card.Title>Grammar and Language Check</Card.Title>
                 <Card.Text>
                   Enhance your assignments or essays with grammar, spelling, and style suggestions.
                 </Card.Text>
-                <Button  variant="success" onClick={() => navigate(`/grammarCheck`)}>Try Now</Button>
+                <Button variant="success" onClick={() => navigate(`/grammarCheck`)}>Try Now</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -121,7 +120,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Edit size={50} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Edit-icon.svg" alt="edit-icon" width="50" />
                 </div>
                 <Card.Title>Personalized Study Plan</Card.Title>
                 <Card.Text>
@@ -136,7 +135,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Flag size={50} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flag-icon.svg" alt="flag-icon" width="50" />
                 </div>
                 <Card.Title>Time Management Assistant</Card.Title>
                 <Card.Text>
