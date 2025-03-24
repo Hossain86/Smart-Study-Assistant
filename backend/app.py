@@ -13,6 +13,7 @@ from assignment_generator import assignment_gen, markdown_to_plain_text
 from coverpage_generator import generate_coverpage
 from mcq_generator import generateMCQ
 from narrative_generator import generateOpenEnded
+from serverless_wsgi import handle
 
 load_dotenv()
 
@@ -234,6 +235,9 @@ def submit_data():
     data = request.get_json()
     print(data)
     return jsonify({"message": "Data received!", "data": data})
+
+def handler(event, context):
+    return handle(app, event, context)
 
 if __name__ == "__main__":
     app.run(debug=True)
