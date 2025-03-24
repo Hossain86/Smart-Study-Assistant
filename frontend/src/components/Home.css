@@ -4,9 +4,10 @@
 }
 .card-container{
   background-color: none;
+  margin-bottom: min(15px, 5vw);
 }
 .hero-section {
-  padding: 50px;
+  padding: min(50px, 5vw);
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
@@ -68,4 +69,10 @@ button {
 
 .footer-links a:hover {
   text-decoration: underline;
+}
+.card-text{
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+.card-title{
+  font-size: clamp(18px, 2vw, 20px);
 }

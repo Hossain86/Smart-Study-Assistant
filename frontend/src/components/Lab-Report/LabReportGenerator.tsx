@@ -107,8 +107,9 @@ const LabReportGenerator = () => {
   return (
     <div className="min-h-screen flex flex-col justify-item-center justify-center pt-4 ms-4 me-4">
       <div className="generate-section">
-        <h2 className="mb-4">Lab Report Generator</h2>
-        <p className="all-p-text mb-4">
+        <h2 className="mb-4 fw-bold">Lab Report Generator</h2>
+        <p className="all-p-text mb-3 fw-bold">Enter the topic of your lab report and generate it. You can also download the generated lab report in DOCX format.</p>
+        <p className="all-p-text mb-3">
           Example Topic: <br />
           Study the efficiency of different converters, such as DC-DC or AC-DC <br />
           Find out the optimal solution of maximum profit using fractional Knapsack algorithm. <br />
@@ -124,7 +125,7 @@ const LabReportGenerator = () => {
           <button
             onClick={handleGenerateReport}
             disabled={isGenerating || isDownloading}
-            className="btn-grad-blue mt-3 mb-2 px-3 py-2 me-4"
+            className="btn-grad-blue  fw-bold mt-3 mb-2 px-3 py-2 me-4"
           >
             {isGenerating ? "Generating..." : "Generate Report"}
           </button>
@@ -132,9 +133,9 @@ const LabReportGenerator = () => {
           <button
             onClick={handleDownloadDocx}
             disabled={isGenerating || isDownloading || !labReport}
-            className="btn-grad-blue mt-3 mb-2 px-3 py-2 me-3"
+            className="btn-grad-blue fw-bold mt-3 mb-2 px-3 py-2 me-3"
           >
-            {isDownloading ? "Preparing DOCX..." : "Download DOCX"}
+            {isDownloading ? "Preparing DOCX..." : "Download DOCX without Coverpage"}
           </button>
           {/* New Download Final DOCX button */}
           
@@ -292,9 +293,9 @@ const LabReportGenerator = () => {
         <button
             onClick={handleDownloadFinalDocx}
             disabled={isGenerating || isFinalDownloading || !topic.trim()}
-            className="btn-grad-blue new mt-3 px-3 py-2"
+            className="btn-grad-blue fw-bold new mt-3 px-3 py-2"
           >
-            {isFinalDownloading ? "Preparing Final DOCX..." : "Download Final DOCX With CoverPage"}
+            {isFinalDownloading ? "Preparing DOCX With CoverPage..." : "Download DOCX With CoverPage"}
           </button>
         
       </div>

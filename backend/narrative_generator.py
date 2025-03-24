@@ -13,7 +13,7 @@ client = genai.Client(api_key=API_KEY)
 def generateOpenEnded(text):
     """Generate 10 numbered OpenEnded questions and answers."""
     prompt = (
-        "Generate 10 OpenEnded questions from the text below with detailed answers (50-150 words). "
+        "Generate 10 OpenEnded questions from the text below with detailed answers (50-100 words). "
         "Keep the text's explanation style and include examples if possible.\n\n"
         "Format:\n"
         "1. What is AI?\n"

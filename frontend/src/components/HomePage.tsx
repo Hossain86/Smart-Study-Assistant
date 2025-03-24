@@ -31,15 +31,15 @@ const Home: React.FC = () => {
         </header>
 
         {/* Features Section */}
-        <Row className="mt-5" style={{ zIndex: -1 }}>
-          <Col md={4} className="card-container mb-4">
+        <Row className="mt-4" style={{ zIndex: -1 }}>
+          <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <FileEarmarkText size={50} />
+                  <FileEarmarkText size={45} />
                 </div>
                 <Card.Title>PDF to MCQ & Narrative Generator</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text">
                   Convert study materials into MCQs, narrative questions, and structured answers effortlessly.
                 </Card.Text>
                 <Button className="btn-grad-orange" onClick={() => navigate(`/pdfToqa`)}>
@@ -49,14 +49,14 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
-          <Col md={4} className="mb-4">
+          <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <ClipboardData size={50} />
+                  <ClipboardData size={45} />
                 </div>
                 <Card.Title>Assignment Or Lab Report Generator</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text">
                   Generate high-quality assignments or lab report in minutes with AI-powered assistance.
                 </Card.Text>
                 <Button variant="success" onClick={() => navigate(`/lab-report-generator`)}>
@@ -67,14 +67,14 @@ const Home: React.FC = () => {
           </Col>
 
           {/* New Feature Sections */}
-          <Col md={4} className="mb-4">
+          <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <PencilSquare size={50} />
+                  <PencilSquare size={45} />
                 </div>
                 <Card.Title>Essay or Paragraph Generator</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text">
                   Generate structured essays or reports based on given topics.
                 </Card.Text>
                 <Button className="btn-grad-orange" onClick={() => navigate(`/essayReportGenerator`)}>
@@ -84,14 +84,14 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
-          <Col md={4} className="mb-4">
+          <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Book size={50} />
+                  <Book size={45} />
                 </div>
                 <Card.Title>Summarization Tool</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text">
                   Summarize long documents or textbooks into concise, digestible summaries.
                 </Card.Text>
                 <Button variant="success" onClick={() => navigate(`/summarizer`)}>
@@ -101,14 +101,14 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
-          <Col md={4} className="mb-4">
+          <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <FlagFill size={50} />
+                  <FlagFill size={45} />
                 </div>
                 <Card.Title>Topic Explanation</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text">
                   Provide simplified and detailed explanations of complex topics or concepts.
                 </Card.Text>
                 <Button className="btn-grad-orange" onClick={() => navigate(`/topicExplanation`)}>
@@ -118,14 +118,14 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
-          <Col md={4} className="mb-4">
+          <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <PencilSquare size={50} />
+                  <PencilSquare size={45} />
                 </div>
                 <Card.Title>Grammar and Language Check</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text">
                   Enhance your assignments or essays with grammar, spelling, and style suggestions.
                 </Card.Text>
                 <Button variant="success" onClick={() => navigate(`/grammarCheck`)}>
@@ -135,14 +135,14 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
-          <Col md={4} className="mb-4">
+          <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <PencilSquare size={50} />
+                  <PencilSquare size={45} />
                 </div>
                 <Card.Title>Personalized Study Plan</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text">
                   Generate personalized study schedules based on upcoming exams or projects.
                 </Card.Text>
                 <Button className="btn-grad-orange" onClick={() => navigate(`/studyPlan`)}>
@@ -152,14 +152,14 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
-          <Col md={4} className="mb-4">
+          <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <FlagFill size={50} />
+                  <FlagFill size={45} />
                 </div>
                 <Card.Title>Time Management Assistant</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text">
                   Track your study hours, set reminders, and get productivity tips for effective learning.
                 </Card.Text>
                 <Button className="btn-grad-orange" onClick={() => navigate(`/timeManagement`)}>
