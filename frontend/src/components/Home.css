@@ -2,6 +2,9 @@
   padding: 40px 0;
   width: 100%;
 }
+.svg-icons{
+  height: 50px;
+}
 .card-container{
   background-color: none;
   margin-bottom: min(15px, 5vw);

@@ -1,13 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import {
-  FileEarmarkText, // replaces FileText
-  ClipboardData,   // replaces ClipboardList
-  PencilSquare,    // replaces Edit
-  Book,            // replaces BookOpen
-  FlagFill         // replaces Flag
-} from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+import { fileDocument,paragraph, report,studyPlan,timeManagement,topic,lan, textView } from './svg';
 import "./Home.css";
 
 const Home: React.FC = () => {
@@ -36,7 +30,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <FileEarmarkText size={45} />
+                <img src={fileDocument} className="svg-icons" alt="Icon"/>
                 </div>
                 <Card.Title>PDF to MCQ & Narrative Generator</Card.Title>
                 <Card.Text className="card-text">
@@ -53,7 +47,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <ClipboardData size={45} />
+                <img src={report} className="svg-icons" alt="Icon"/>
                 </div>
                 <Card.Title>Assignment Or Lab Report Generator</Card.Title>
                 <Card.Text className="card-text">
@@ -66,29 +60,11 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
-          {/* New Feature Sections */}
           <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <PencilSquare size={45} />
-                </div>
-                <Card.Title>Essay or Paragraph Generator</Card.Title>
-                <Card.Text className="card-text">
-                  Generate structured essays or reports based on given topics.
-                </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/essayReportGenerator`)}>
-                  Try Now
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col md={4} className="card-container">
-            <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
-              <Card.Body>
-                <div className="feature-icon">
-                  <Book size={45} />
+                  <img src={textView} className="svg-icons" alt="Icon"/>
                 </div>
                 <Card.Title>Summarization Tool</Card.Title>
                 <Card.Text className="card-text">
@@ -101,11 +77,32 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
+
+          {/* New Feature Sections */}
           <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <FlagFill size={45} />
+                <img src={paragraph} className="svg-icons" alt="Icon"/>
+                </div>
+                <Card.Title>Essay or Paragraph Generator</Card.Title>
+                <Card.Text className="card-text">
+                  Generate structured essays or reports based on given topics.
+                </Card.Text>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/essayReportGenerator`)}>
+                  Try Now
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          
+
+          <Col md={4} className="card-container">
+            <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
+              <Card.Body>
+                <div className="feature-icon">
+                <img src={topic} className="svg-icons" alt="Icon"/>
                 </div>
                 <Card.Title>Topic Explanation</Card.Title>
                 <Card.Text className="card-text">
@@ -122,7 +119,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <PencilSquare size={45} />
+                <img src={lan} className="svg-icons" alt="Icon"/>
                 </div>
                 <Card.Title>Grammar and Language Check</Card.Title>
                 <Card.Text className="card-text">
@@ -139,7 +136,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <PencilSquare size={45} />
+                <img src={studyPlan} className="svg-icons" alt="Icon"/>
                 </div>
                 <Card.Title>Personalized Study Plan</Card.Title>
                 <Card.Text className="card-text">
@@ -156,7 +153,7 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <FlagFill size={45} />
+                <img src={timeManagement} className="svg-icons" alt="Icon"/>
                 </div>
                 <Card.Title>Time Management Assistant</Card.Title>
                 <Card.Text className="card-text">
