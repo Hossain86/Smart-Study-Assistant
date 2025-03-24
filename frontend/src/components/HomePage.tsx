@@ -1,6 +1,12 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { FileText, ClipboardList, Edit, BookOpen, Flag } from "lucide-react"; // Alternative icons
+import {
+  FileEarmarkText, // replaces FileText
+  ClipboardData,   // replaces ClipboardList
+  PencilSquare,    // replaces Edit
+  Book,            // replaces BookOpen
+  FlagFill         // replaces Flag
+} from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
@@ -30,13 +36,15 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <FileText size={50} />
+                  <FileEarmarkText size={50} />
                 </div>
                 <Card.Title>PDF to MCQ & Narrative Generator</Card.Title>
                 <Card.Text>
                   Convert study materials into MCQs, narrative questions, and structured answers effortlessly.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/pdfToqa`)}>Try Now</Button>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/pdfToqa`)}>
+                  Try Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -45,13 +53,15 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <ClipboardList size={50} />
+                  <ClipboardData size={50} />
                 </div>
                 <Card.Title>Assignment Or Lab Report Generator</Card.Title>
                 <Card.Text>
                   Generate high-quality assignments or lab report in minutes with AI-powered assistance.
                 </Card.Text>
-                <Button variant="success" onClick={() => navigate(`/lab-report-generator`)}>Generate Assignment</Button>
+                <Button variant="success" onClick={() => navigate(`/lab-report-generator`)}>
+                  Generate Assignment
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -61,13 +71,15 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Edit size={50} />
+                  <PencilSquare size={50} />
                 </div>
                 <Card.Title>Essay or Paragraph Generator</Card.Title>
                 <Card.Text>
                   Generate structured essays or reports based on given topics.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/essayReportGenerator`)}>Try Now</Button>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/essayReportGenerator`)}>
+                  Try Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -76,13 +88,15 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <BookOpen size={50} />
+                  <Book size={50} />
                 </div>
                 <Card.Title>Summarization Tool</Card.Title>
                 <Card.Text>
                   Summarize long documents or textbooks into concise, digestible summaries.
                 </Card.Text>
-                <Button  variant="success" onClick={() => navigate(`/summarizer`)}>Try Now</Button>
+                <Button variant="success" onClick={() => navigate(`/summarizer`)}>
+                  Try Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -91,13 +105,15 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Flag size={50} />
+                  <FlagFill size={50} />
                 </div>
                 <Card.Title>Topic Explanation</Card.Title>
                 <Card.Text>
                   Provide simplified and detailed explanations of complex topics or concepts.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/topicExplanation`)}>Try Now</Button>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/topicExplanation`)}>
+                  Try Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -106,13 +122,15 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Edit size={50} />
+                  <PencilSquare size={50} />
                 </div>
                 <Card.Title>Grammar and Language Check</Card.Title>
                 <Card.Text>
                   Enhance your assignments or essays with grammar, spelling, and style suggestions.
                 </Card.Text>
-                <Button  variant="success" onClick={() => navigate(`/grammarCheck`)}>Try Now</Button>
+                <Button variant="success" onClick={() => navigate(`/grammarCheck`)}>
+                  Try Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -121,13 +139,15 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Edit size={50} />
+                  <PencilSquare size={50} />
                 </div>
                 <Card.Title>Personalized Study Plan</Card.Title>
                 <Card.Text>
                   Generate personalized study schedules based on upcoming exams or projects.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/studyPlan`)}>Try Now</Button>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/studyPlan`)}>
+                  Try Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -136,13 +156,15 @@ const Home: React.FC = () => {
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                  <Flag size={50} />
+                  <FlagFill size={50} />
                 </div>
                 <Card.Title>Time Management Assistant</Card.Title>
                 <Card.Text>
                   Track your study hours, set reminders, and get productivity tips for effective learning.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/timeManagement`)}>Try Now</Button>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/timeManagement`)}>
+                  Try Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
