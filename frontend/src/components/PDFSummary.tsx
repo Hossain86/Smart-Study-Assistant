@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import './PDFSummary.css';  // Assuming you want to use custom styles as well
 
-const API_URL = "http://localhost:5000"; // Update this if deployed
+const API_URL = "https://web-production-5136.up.railway.app/"; // Update this if deployed
 
 const PDFSummary: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000"; // Update this if deployed
+const API_URL = "https://web-production-5136.up.railway.app"; // Update this if deployed
 
 const EssayGenerator: React.FC = () => {
   const [topic, setTopic] = useState<string>("");
