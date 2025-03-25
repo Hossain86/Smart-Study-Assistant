@@ -13,6 +13,8 @@ from assignment_generator import assignment_gen, markdown_to_plain_text
 from coverpage_generator import generate_coverpage
 from mcq_generator import generateMCQ
 from narrative_generator import generateOpenEnded
+from summarizing import summarize_topic
+from eassy_generator import generate_essay_or_paragraph
 
 load_dotenv()
 
@@ -77,6 +79,55 @@ def generate_questions():
     result = generateMCQ(extracted_text) if question_type == "mcq" else generateOpenEnded(extracted_text)
 
     os.remove(pdf_path)
+
+    return jsonify(result)
+
+@app.route("/summarize-pdf", methods=["POST"])
+def summarize_pdf():
+    """API endpoint to summarize text extracted from an uploaded PDF."""
+    
+    if 'pdf' not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+    
+    pdf_file = request.files['pdf']
+    
+    if pdf_file.filename == "":
+        return jsonify({"error": "Empty filename"}), 400
+    
+    pdf_path = "temp.pdf"
+    pdf_file.save(pdf_path)
+    extracted_text = extractText(pdf_path)
+    
+    if not extracted_text.strip():
+        return jsonify({"error": "No text found in PDF"}), 400
+    
+    print("Processing PDF for summarization...")  # Debug log
+    
+    result = summarize_topic(extracted_text)
+    
+    os.remove(pdf_path)
+    
+    return jsonify({"summary": result})
+
+
+@app.route("/generate-essay", methods=["POST"])
+def generate_essay():
+    """API endpoint to generate an essay or paragraph based on a given topic."""
+    
+    data = request.json
+    topic = data.get("topic", "").strip()
+    essay_type = data.get("essay_type", "essay")  # "essay" or "paragraph"
+
+    if not topic:
+        return jsonify({"error": "No topic provided"}), 400
+
+    print(f"Generating {essay_type} for topic: {topic}")  # Debugging log
+
+    # Call the essay generation function
+    result = generate_essay_or_paragraph(topic, essay_type)
+
+    if "error" in result:
+        return jsonify(result), 500
 
     return jsonify(result)
 

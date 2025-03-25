@@ -70,7 +70,7 @@ const Home: React.FC = () => {
                 <Card.Text className="card-text">
                   Summarize long documents or textbooks into concise, digestible summaries.
                 </Card.Text>
-                <Button variant="success" onClick={() => navigate(`/summarizer`)}>
+                <Button variant="success" onClick={() => navigate(`/pdf-summary`)}>
                   Try Now
                 </Button>
               </Card.Body>
@@ -89,7 +89,7 @@ const Home: React.FC = () => {
                 <Card.Text className="card-text">
                   Generate structured essays or reports based on given topics.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/essayReportGenerator`)}>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/eassy-generator`)}>
                   Try Now
                 </Button>
               </Card.Body>

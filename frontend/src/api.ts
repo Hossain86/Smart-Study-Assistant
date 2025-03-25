@@ -37,6 +37,24 @@ export const generateQuestions = async (file: File, questionType: "mcq" | "narra
     throw new Error("Failed to generate questions.");
   }
 };
+
+export const summarizePDF = async (file: File) => {
+  const formData = new FormData();
+  formData.append("pdf", file);
+
+  try {
+    const response = await axios.post(`${API_URL}/summarize-pdf`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error summarizing PDF", error);
+    throw new Error("Failed to summarize PDF.");
+  }
+};
+
+
 export const generateLabReport = async (topic: string) => {
   try {
     const response = await axios.post(`${API_URL}/generate-lab-report`, { topic });
