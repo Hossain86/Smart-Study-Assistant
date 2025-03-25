@@ -37,7 +37,7 @@ const EssayGenerator: React.FC = () => {
 
   return (
     <div className="container mt-5">
-      <div className="card p-4 shadow-sm">
+      <div className="card p-4 shadow-sm bg-transparent">
         <h2 className="text-center mb-4">Essay/Paragraph Generator</h2>
 
         <div className="form-group mb-3">

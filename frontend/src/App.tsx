@@ -9,6 +9,11 @@ import PDFSummary from "./components/PDFSummary";
 import EssayGenerator from "./components/EssayGenerator";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import TopicExplanation from "./components/TopicExplanation";
+import StudyPlan from "./components/StudyPlan";
+import Aboutme from "./components/About-me/Aboutme";
+import ContactMe from "./components/About-me/ContactMe";
+import ParaphrasingTool from "./components/Paraphrasing";
 
 
 const App = () => {
@@ -39,6 +44,11 @@ const MainApp = () => {
           <Route path="/submit" element={ <Test/> }/>
           <Route path="/pdf-summary" element={ <PDFSummary/> }/>
           <Route path="/eassy-generator" element={ <EssayGenerator/> }/>
+          <Route path="/topic-explaination" element={ <TopicExplanation/> }/>
+          <Route path="/paraphrase" element={ <ParaphrasingTool/> }/>
+          <Route path="/study-plan-generator" element={ <StudyPlan/> }/>
+          <Route path="/about-me" element={ <Aboutme/> }/>
+          <Route path="/contact" element={ <ContactMe/> }/>
         </Routes>
       </main>
     </div>

@@ -9,12 +9,15 @@ from flask_cors import CORS
 from docx import Document
 from docxcompose.composer import Composer
 from docxtpl import DocxTemplate
-from assignment_generator import assignment_gen, markdown_to_plain_text
-from coverpage_generator import generate_coverpage
 from mcq_generator import generateMCQ
 from narrative_generator import generateOpenEnded
 from summarizing import summarize_topic
 from eassy_generator import generate_essay_or_paragraph
+from coverpage_generator import generate_coverpage
+from assignment_generator import assignment_gen, markdown_to_plain_text
+from study_plan import generate_study_plan
+from topic_explanation import explain_topic
+from paraphrasing import paraphrase_text
 
 load_dotenv()
 
@@ -108,6 +111,64 @@ def summarize_pdf():
     os.remove(pdf_path)
     
     return jsonify({"summary": result})
+
+@app.route("/explain-topic", methods=["POST"])
+def explain_topic_api():
+    """API endpoint to explain a given topic."""
+
+    data = request.get_json()
+    
+    if not data or "topic" not in data:
+        return jsonify({"error": "No topic provided"}), 400
+
+    topic = data["topic"].strip()
+    
+    if not topic:
+        return jsonify({"error": "Empty topic"}), 400
+    
+    print("Processing topic explanation...")  # Debug log
+
+    result = explain_topic(topic)
+    
+    return jsonify({"explanation": result})
+
+@app.route("/paraphrase", methods=["POST"])
+def paraphrase():
+    """API endpoint to paraphrase user input text."""
+    
+    data = request.get_json()
+    
+    if "text" not in data or not data["text"].strip():
+        return jsonify({"error": "No text provided"}), 400
+
+    print("Received text for paraphrasing...")  # Debug log
+
+    result = paraphrase_text(data["text"])
+    
+    return jsonify({"paraphrased_text": result})
+
+
+@app.route("/generate-study-plan", methods=["POST"])
+def study_plan():
+    data = request.json
+    
+    name = data.get("name")
+    age = data.get("age")
+    education_level = data.get("educationLevel")
+    exam_date = data.get("examDate")
+    days_left = data.get("daysLeft")
+    subjects = data.get("subjects")
+    preferences = data.get("preferences")
+    availability = data.get("availability")
+
+    if not all([name, age, education_level, exam_date, days_left, subjects, preferences, availability]):
+        return jsonify({"error": "Missing required fields"}), 400
+
+    print(f"Generating study plan for {name}...")  # Debug log
+    
+    study_plan = generate_study_plan(name, age, education_level, exam_date, days_left, subjects, preferences, availability)
+    
+    return jsonify({"study_plan": study_plan})
 
 
 @app.route("/generate-essay", methods=["POST"])

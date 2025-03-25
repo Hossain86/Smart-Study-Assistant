@@ -1,17 +1,12 @@
-Setting up a Full-Stack Project with a Python Backend (FastAPI/Django/Flask) and a React+TypeScript+Vite Frontend. I'll guide you through the installation process, including folder structure and necessary dependencies.
+  venv\Scripts\activate  
+  D:
+  cd D:\Python Codes\FullStackProject\backend 
+  python app.py
+  cd "D:\Python Codes\FullStackProject\frontend"
+pip frezze > requirements.txt
 
----
-
+npm run dev
  📁 Project Folder Structure
-
-FullStackProject
-│── backend/           Python backend (FastAPI/Django/Flask)
-│── frontend/          React + Vite + TypeScript frontend
-│── README.md
-│── .gitignore
-
-
----
 
  🛠 1. Setting Up the Backend (Python)
 > You can use FastAPI, Flask, or Django REST. I'll show FastAPI (recommended for modern APIs).
@@ -35,23 +30,6 @@ pip install fastapi uvicorn pydantic SQLAlchemy psycopg2-binary
 - SQLAlchemy → ORM for databases  
 - psycopg2-binary → PostgreSQL driver (use sqlite3 if using SQLite)  
 
- 🔹 Step 3: Create main.py
-python
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello, Full-Stack!"}
-
-
- 🔹 Step 4: Run Backend Server
-sh
-uvicorn main:app --reload
-
-> Open: [http://127.0.0.1:8000](http://127.0.0.1:8000)  
-> API Docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)  
 
 ---
 
@@ -73,106 +51,6 @@ npm install react-router-dom axios react-icons bootstrap
 - react-icons → Icons 🎨  
 - bootstrap → UI Styling 👕  
 
- 🔹 Step 3: Update main.tsx
-Edit frontend/src/main.tsx to wrap the app with BrowserRouter:
-tsx
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
-import "bootstrap/dist/css/bootstrap.min.css";
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
-
-
- 🔹 Step 4: Run Frontend
-sh
-npm run dev
-
-> Open: [http://localhost:5173](http://localhost:5173)  
-
----
-
- 🔄 3. Connecting Backend & Frontend
- 🔹 Frontend API Call (React)
-Edit frontend/src/App.tsx:
-tsx
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios.get("http://127.0.0.1:8000/").then((res) => {
-      setMessage(res.data.message);
-    });
-  }, []);
-
-  return (
-    <div className="container mt-5">
-      <h1 className="text-primary">Backend Message:</h1>
-      <p className="lead">{message}</p>
-    </div>
-  );
-}
-
-export default App;
-
-
----
-
- 🚀 Final Steps
-- Start Backend: uvicorn backend.main:app --reload
-- Start Frontend: npm run dev
-- Open http://localhost:5173 → You should see "Backend Message: Hello, Full-Stack!"
-
----
-
- 🎯 Bonus: Additional Setup
- 🛠 Environment Variables (.env)
-Create backend/.env for DB secrets:
-
-DATABASE_URL=postgresql://user:password@localhost/dbname
-
-Use python-dotenv to load .env:
-sh
-pip install python-dotenv
-
-In backend/main.py:
-python
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-DB_URL = os.getenv("DATABASE_URL")
-
-
- 🔥 CORS Setup (Allow Frontend to Call API)
-sh
-pip install fastapi[all]
-
-Modify backend/main.py:
-python
-from fastapi.middleware.cors import CORSMiddleware
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[""],   Change  to specific domains in production
-    allow_credentials=True,
-    allow_methods=[""],
-    allow_headers=[""],
-)
-
-
----
-
- 🎯 Your Full-Stack Setup is Ready!
-Now, you have a Python backend (FastAPI) and a React+Vite+TS frontend running together! 🚀 Let me know if you need help!
 
 backend
 ├── __pycache__

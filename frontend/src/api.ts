@@ -54,6 +54,42 @@ export const summarizePDF = async (file: File) => {
   }
 };
 
+export const explainTopic = async (topic: string) => {
+  try {
+    const response = await axios.post(`${API_URL}/explain-topic`, { topic }, {
+      headers: { "Content-Type": "application/json" },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error explaining topic", error);
+    throw new Error("Failed to fetch explanation.");
+  }
+};
+
+export const paraphraseText = async (text: string) => {
+  try {
+    const response = await axios.post(`${API_URL}/paraphrase`, { text }, {
+      headers: { "Content-Type": "application/json" },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error paraphrasing text", error);
+    throw new Error("Failed to paraphrase text.");
+  }
+};
+
+export const generateStudyPlan = async (data: any) => {
+  try {
+    const response = await axios.post(`${API_URL}/generate-study-plan`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error generating study plan", error);
+    throw new Error("Failed to generate study plan.");
+  }
+};
+
 
 export const generateLabReport = async (topic: string) => {
   try {

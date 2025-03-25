@@ -108,7 +108,7 @@ const Home: React.FC = () => {
                 <Card.Text className="card-text">
                   Provide simplified and detailed explanations of complex topics or concepts.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/topicExplanation`)}>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/topic-explaination`)}>
                   Try Now
                 </Button>
               </Card.Body>
@@ -121,11 +121,10 @@ const Home: React.FC = () => {
                 <div className="feature-icon">
                 <img src={lan} className="svg-icons" alt="Icon"/>
                 </div>
-                <Card.Title>Grammar and Language Check</Card.Title>
+                <Card.Title>Paraphrasing Tool</Card.Title>
                 <Card.Text className="card-text">
-                  Enhance your assignments or essays with grammar, spelling, and style suggestions.
-                </Card.Text>
-                <Button variant="success" onClick={() => navigate(`/grammarCheck`)}>
+                Paraphrase text instantly without losing meaning with our free AI-powered paraphrasing tool.</Card.Text>
+                <Button variant="success" onClick={() => navigate(`/paraphrase`)}>
                   Try Now
                 </Button>
               </Card.Body>
@@ -142,24 +141,7 @@ const Home: React.FC = () => {
                 <Card.Text className="card-text">
                   Generate personalized study schedules based on upcoming exams or projects.
                 </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/studyPlan`)}>
-                  Try Now
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col md={4} className="card-container">
-            <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
-              <Card.Body>
-                <div className="feature-icon">
-                <img src={timeManagement} className="svg-icons" alt="Icon"/>
-                </div>
-                <Card.Title>Time Management Assistant</Card.Title>
-                <Card.Text className="card-text">
-                  Track your study hours, set reminders, and get productivity tips for effective learning.
-                </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/timeManagement`)}>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/study-plan-generator`)}>
                   Try Now
                 </Button>
               </Card.Body>
@@ -177,7 +159,7 @@ const Home: React.FC = () => {
                 &copy; {new Date().getFullYear()} Your Study Helper. All Rights Reserved.
               </p>
               <p className="footer-links">
-                <a href="/about">About</a> | <a href="/contact">Contact</a> | <a href="/privacy">Privacy Policy</a>
+                <a href="/about-me">About</a> | <a href="/contact">Contact</a> | <a href="/privacy">Privacy Policy</a>
               </p>
             </Col>
           </Row>

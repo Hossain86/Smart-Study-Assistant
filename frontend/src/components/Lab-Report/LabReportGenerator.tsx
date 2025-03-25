@@ -124,18 +124,18 @@ const LabReportGenerator = () => {
           
           <button
             onClick={handleGenerateReport}
-            disabled={isGenerating || isDownloading}
+            disabled={isGenerating}
             className="btn-grad-blue  fw-bold mt-3 mb-2 px-3 py-2 me-4"
           >
-            {isGenerating ? "Generating..." : "Generate Report"}
+            {isGenerating ? <span className="spinner"></span>  : "Generate Report"}
           </button>
           {/* New Download DOCX button */}
           <button
             onClick={handleDownloadDocx}
-            disabled={isGenerating || isDownloading || !labReport}
+            disabled={isDownloading || !labReport}
             className="btn-grad-blue fw-bold mt-3 mb-2 px-3 py-2 me-3"
           >
-            {isDownloading ? "Preparing DOCX..." : "Download DOCX without Coverpage"}
+            {isDownloading ? <span className="spinner"></span>  : "Download DOCX without Coverpage"}
           </button>
           {/* New Download Final DOCX button */}
           
@@ -292,10 +292,10 @@ const LabReportGenerator = () => {
         </div>
         <button
             onClick={handleDownloadFinalDocx}
-            disabled={isGenerating || isFinalDownloading || !topic.trim()}
+            disabled={isFinalDownloading || !topic.trim()}
             className="btn-grad-blue fw-bold new mt-3 px-3 py-2"
           >
-            {isFinalDownloading ? "Preparing DOCX With CoverPage..." : "Download DOCX With CoverPage"}
+            {isFinalDownloading ? <span className="spinner"></span>  : "Download DOCX With CoverPage"}
           </button>
         
       </div>

@@ -1,0 +1,147 @@
+.second-container {
+  font-family: Arial, sans-serif;
+  padding: 40px;
+  margin: 40px 20px;
+}
+
+/* Style for headings */
+.heading-message {
+  text-align: center;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.heading-message h1 {
+  font-size: 2.5rem;
+}
+
+.heading-message h4 {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Style for small headline and details */
+.smallheadline-message {
+  margin-bottom: 20px;
+  padding: 0px 20px;
+}
+
+.smallheadline-message h4 {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+}
+
+.smallheadline-message p {
+  font-size: 1.1rem;
+  color: #111;
+  line-height: 1.8;
+  word-wrap: break-word;
+  word-spacing: 4px;
+}
+
+/* Styling for the <br> (line breaks) in details */
+.smallheadline-message p br {
+  margin: 10px 0;
+}
+.imageContainer1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex: 1;
+  text-align: center;
+  padding: 25px;
+  margin: 0px 50px;
+}
+.imageContainer1 p{
+  font-size: 18px;
+  width: 100%;
+  text-align: justify;
+  line-height: 1.8;
+}
+.imageContainer1 h4{
+  cursor: pointer;
+  margin: 0px;
+  color: #111;
+  font-size: 1.5rem;
+}
+.heroImage1 {
+  max-width: 20%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.proficient-list li{
+  list-style: none;
+}
+
+.education{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 25px;
+  padding: 10px;
+}
+.institution-img{
+  width: 5%;
+  height: auto;
+  padding: 25px;
+  flex: 0.2;
+}
+.institution-info{
+  flex: 1.5;
+}
+/* Responsive Design for Mobile */
+@media (max-width: 868px) {
+  .second-container {
+    padding: 15px 10px;
+    margin: 40px 0px;
+  }
+
+  .heading-message h1 {
+    font-size: 2rem;
+  }
+
+  .heading-message h4 {
+    font-size: 1rem;
+  }
+
+  .smallheadline-message h4 {
+    font-size: 1.2rem;
+  }
+  .smallheadline-message{
+    width: 90%;
+  }
+  .smallheadline-message p {
+    font-size: 0.9rem;
+  }
+  .imageContainer1{
+    width: 90%;
+    flex-direction: column;
+    padding: 0px;
+    margin: 0px 0px;
+  }
+  .imageContainer1 p{
+    font-size: 14px;
+    width: 100%;
+  }
+  .heroImage1 {
+    max-width: 60%;
+    height: auto;
+  }
+  .education{
+    flex-direction: column;
+    gap:10px;
+  }
+  .institution-img{
+    width: 20%;
+  }
+}
+@media (max-width: 768px){
+  .heroImage1 {
+    max-width: 70%;
+    height: auto;
+  }
+}
