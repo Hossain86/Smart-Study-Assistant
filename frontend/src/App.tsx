@@ -1,14 +1,14 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; 
-import QuestionGenerator from "./components/QuestionGenerator";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
-import HomePage from "./components/HomePage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider, useTheme } from "./layouts/ThemeContext";
 import Sidebar from "./layouts/Sidebar";
-import Test from "./components/test";
+import Test from "./components/test"; 
+import HomePage from "./components/HomePage";
+import QuestionGenerator from "./components/QuestionGenerator";
 import LabReportGenerator from "./components/Lab-Report/LabReportGenerator";
 import PDFSummary from "./components/PDFSummary";
 import EssayGenerator from "./components/EssayGenerator";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
 
 
 const App = () => {
