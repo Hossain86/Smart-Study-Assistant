@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios, { AxiosError }  from "axios";
+import axios  from "axios";
 import ReactMarkdown from "react-markdown";
 
 const StudyPlan = () => {

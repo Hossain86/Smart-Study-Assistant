@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import "./about-me.css";
 import { github, linkedin, mail } from "./svg";
 
 function SecondComponent() {
-  const navigate = useNavigate();
   return (
     <div className="second-container">
       <div className="heading-message">
