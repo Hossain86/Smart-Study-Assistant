@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import Accordion from "react-bootstrap/Accordion";
 import './ShowQandA.css'
 
@@ -96,7 +98,12 @@ const ShowQandA: React.FC<Props> = ({ questionType, mcqs, narrativeQuestions }) 
                 <ReactMarkdown>{narrative.question}</ReactMarkdown></p>
               </div>
               <div className="narrative-answer">
-              <b>Answer:</b> <ReactMarkdown>{narrative.answer}</ReactMarkdown>
+              <b>Answer:</b> 
+              <ReactMarkdown 
+                children={narrative.answer}
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]} 
+                />
               </div>
             </div>
           ))}
