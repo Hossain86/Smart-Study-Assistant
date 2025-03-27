@@ -61,7 +61,14 @@ const PDFSummary: React.FC = () => {
             disabled={loading}
             className="btn btn-primary w-100"
           >
-            {loading ? "Summarizing..." : "Generate Summary"}
+            {loading ? (
+    <div className="d-flex align-items-center  justify-content-center">
+    <div className="spinner-border me-2" role="status">
+      <span className="spinner"></span> 
+      </div>
+      Summarizing...
+    </div>
+  )  : "Generate Summary"}
           </button>
 
           {error && <p className="text-danger mt-3">{error}</p>}

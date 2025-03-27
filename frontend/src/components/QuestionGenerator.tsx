@@ -115,7 +115,14 @@ const QuestionGenerator = () => {
       </div>
 
       <button onClick={handleGenerateQuestions} disabled={loading} className="btn btn-success w-100 mb-2">
-        {loading ? "Generating..." : "Generate Questions"}
+        {loading ? (
+    <div className="d-flex align-items-center justify-content-center">
+    <div className="spinner-border me-2" role="status">
+      <span className="spinner"></span> 
+      </div>
+      Generating...
+    </div>
+  )  : "Generate Questions"}
       </button>
 
       {error && <div className="alert alert-danger mt-3">{error}</div>}
