@@ -26,7 +26,11 @@ const Home: React.FC = () => {
 
         {/* Features Section */}
         <Row className="mt-4" style={{ zIndex: -1 }}>
+          
           <Col md={4} className="card-container">
+          <div className="card-wrapper">
+          {/* Recommended Label */}
+          <div className="recommended-label">Recommended</div>
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
@@ -41,15 +45,21 @@ const Home: React.FC = () => {
                 </Button>
               </Card.Body>
             </Card>
+          </div>
           </Col>
 
+          
           <Col md={4} className="card-container">
+          <div className="card-wrapper">
+          {/* Recommended Label */}
+          <div className="recommended-label">Recommended</div>
+
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
               <Card.Body>
                 <div className="feature-icon">
-                <img src={report} className="svg-icons" alt="Icon"/>
+                  <img src={report} className="svg-icons" alt="Icon"/>
                 </div>
-                <Card.Title>Assignment Or Lab Report Generator</Card.Title>
+                <Card.Title>Lab Report Generator</Card.Title>
                 <Card.Text className="card-text">
                   Generate high-quality assignments or lab report in minutes with AI-powered assistance.
                 </Card.Text>
@@ -58,7 +68,9 @@ const Home: React.FC = () => {
                 </Button>
               </Card.Body>
             </Card>
+        </div>
           </Col>
+
 
           <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>

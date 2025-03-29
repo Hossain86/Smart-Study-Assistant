@@ -1,46 +1,35 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { generateQuestions, extractText } from "../api"; // Import API function
-import ShowQandA from "../components/ShowQandA"; // Import Q&A component
+import { generateQuestions } from "../api"; // Updated API function
+import ShowQandA from "../components/ShowQandA";
 
-// Define types for MCQ and Narrative Questions
-type Option = {
-  label: string;
-  text: string;
-};
-
-type MCQ = {
-  question: string;
-  options: Option[];
-  answer: string;
-};
-
-type Narrative = {
-  question: string;
-  answer: string;
-};
+type Option = { label: string; text: string };
+type MCQ = { question: string; options: Option[]; answer: string };
+type Narrative = { question: string; answer: string };
 
 const QuestionGenerator = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [inputText, setInputText] = useState<string>("");
   const [questionType, setQuestionType] = useState<"mcq" | "narrative">("mcq");
+  const [numQuestions, setNumQuestions] = useState<number>(10);
+  const [level, setLevel] = useState<string>("Undergraduate");
+  const [difficulty, setDifficulty] = useState<string>("Average");
   const [mcqs, setMcqs] = useState<MCQ[]>([]);
   const [narrativeQuestions, setNarrativeQuestions] = useState<Narrative[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [extractedText, setExtractedText] = useState<string>("");
 
-  // Handle file selection
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setSelectedFile(event.target.files[0]);
+      setInputText(""); // Reset text input
       setError(null);
     }
   };
 
-  // Handle Question Generation
   const handleGenerateQuestions = async () => {
-    if (!selectedFile) {
-      setError("Please select a PDF file.");
+    if (!selectedFile && !inputText.trim()) {
+      setError("Please provide either a PDF file or input text.");
       return;
     }
 
@@ -50,16 +39,20 @@ const QuestionGenerator = () => {
     setError(null);
 
     try {
-      const text = await extractText(selectedFile);
-      setExtractedText(text); 
+      const data = await generateQuestions({
+        file: selectedFile,
+        text: inputText.trim(),
+        questionType,
+        numQuestions,
+        level,
+        difficulty,
+      });
 
-      const data = await generateQuestions(selectedFile, questionType);
       if (questionType === "mcq") {
         setMcqs(data);
       } else {
         setNarrativeQuestions(data);
       }
-      console.log(data);
     } catch (error) {
       console.error("Error generating questions", error);
       setError("Failed to generate questions.");
@@ -68,84 +61,72 @@ const QuestionGenerator = () => {
     }
   };
 
-  const handleCopyText = () => {
-    if (extractedText) {
-      navigator.clipboard.writeText(extractedText).then(
-        () => {
-          alert("Text copied to clipboard!"); // Optionally, show a message
-        },
-        (err) => {
-          console.error("Error copying text: ", err);
-          alert("Failed to copy text.");
-        }
-      );
-    }
-  };
-
   return (
     <div className="container mt-4 mb-4 p-4 border shadow-sm">
-      <h2 className="text-center mb-4">PDF to Question & Answer Generator</h2>
+      <h2 className="text-center mb-4">PDF/Text to Q&A Generator</h2>
 
       <div className="mb-3">
-        <input
-          type="file"
-          accept="application/pdf"
+        <label className="form-label">Upload PDF File:</label>
+        <input type="file" accept="application/pdf" className="form-control" onChange={handleFileChange} />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Or Enter Text:</label>
+        <textarea
           className="form-control"
-          onChange={handleFileChange}
+          rows={4}
+          value={inputText}
+          onChange={(e) => {
+            setInputText(e.target.value);
+            setSelectedFile(null); // Reset file input
+          }}
+          placeholder="Enter text here..."
         />
       </div>
 
-      {/* Select Question Type */}
+      {/* Question Type */}
       <div className="mb-3">
         <label className="form-label">Select Question Type:</label>
         <div className="btn-group w-100">
-          <button
-            className={`btn ${questionType === "mcq" ? "btn-primary" : "btn-outline-primary"}`}
-            onClick={() => setQuestionType("mcq")}
-          >
-            MCQs
-          </button>
-          <button
-            className={`btn ${questionType === "narrative" ? "btn-primary" : "btn-outline-primary"}`}
-            onClick={() => setQuestionType("narrative")}
-          >
-            Narrative Questions
-          </button>
+          <button className={`btn ${questionType === "mcq" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => setQuestionType("mcq")}>MCQs</button>
+          <button className={`btn ${questionType === "narrative" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => setQuestionType("narrative")}>Narrative</button>
         </div>
       </div>
 
-      <button onClick={handleGenerateQuestions} disabled={loading} className="btn btn-success w-100 mb-2">
-        {loading ? (
-    <div className="d-flex align-items-center justify-content-center">
-    <div className="spinner-border me-2" role="status">
-      <span className="spinner"></span> 
+      {/* Settings */}
+      <div className="mb-3">
+        <label className="form-label">Number of Questions:</label>
+        <select className="form-control" value={numQuestions} onChange={(e) => setNumQuestions(Number(e.target.value))}>
+          {[5, 10, 15, 20].map((num) => (
+            <option key={num} value={num}>{num}</option>
+          ))}
+        </select>
       </div>
-      Generating...
-    </div>
-  )  : "Generate Questions"}
+
+      <div className="mb-3">
+        <label className="form-label">Level:</label>
+        <select className="form-control" value={level} onChange={(e) => setLevel(e.target.value)}>
+          {["School", "Higher Secondary", "Undergraduate"].map((lvl) => (
+            <option key={lvl} value={lvl}>{lvl}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Difficulty:</label>
+        <select className="form-control" value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+          {["Easy", "Average", "Hard"].map((diff) => (
+            <option key={diff} value={diff}>{diff}</option>
+          ))}
+        </select>
+      </div>
+
+      <button onClick={handleGenerateQuestions} disabled={loading} className="btn btn-success w-100">
+        {loading ? "Generating..." : "Generate Questions"}
       </button>
 
       {error && <div className="alert alert-danger mt-3">{error}</div>}
 
-      {extractedText && (
-        <div className="mb-2">
-          <h5>Extracted Text:</h5>
-          <textarea
-            value={extractedText}
-            readOnly
-            className="form-control extractedText"
-            rows={6}
-          />
-           <button
-            onClick={handleCopyText}
-            className="btn btn-info mt-2 w-100"
-          >
-            Copy Text
-          </button>
-        </div>
-      )}
-
-      {/* Display Questions using the new component */}
       <ShowQandA questionType={questionType} mcqs={mcqs} narrativeQuestions={narrativeQuestions} />
     </div>
   );

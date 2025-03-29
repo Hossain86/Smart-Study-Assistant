@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-import './PDFSummary.css';  // Assuming you want to use custom styles as well
+import './PDFSummary.css';  
 
 const API_URL = "https://web-production-5136.up.railway.app/"; // Update this if deployed
 
@@ -47,7 +47,7 @@ const PDFSummary: React.FC = () => {
     <div className="summary-container py-5">
       <h2 className="text-center mb-4">Upload PDF for Summary</h2>
       <div className=" justify-content-center w-100">
-        <div className="col-md-6">
+        <div className="">
           <div className="mb-4">
             <input
               type="file"
@@ -59,7 +59,7 @@ const PDFSummary: React.FC = () => {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="btn btn-primary w-100"
+            className="btn-grad-blue-ash2 btn btn-success w-100"
           >
             {loading ? (
     <div className="d-flex align-items-center  justify-content-center">
@@ -74,8 +74,8 @@ const PDFSummary: React.FC = () => {
           {error && <p className="text-danger mt-3">{error}</p>}
 
           {summary && (
-            <div className="mt-4 p-3 border rounded bg-light w-100">
-              <h3 className="h5">Summary:</h3>
+            <div className="mt-4 p-3 border rounded bg-light w-100 bg-transparent">
+              <h4>Generated Summary</h4>
               <ReactMarkdown>{summary}</ReactMarkdown>
             </div>
           )}

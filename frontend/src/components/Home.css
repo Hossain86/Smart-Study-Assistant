@@ -79,3 +79,23 @@ button {
 .card-title{
   font-size: clamp(18px, 2vw, 20px);
 }
+.recommended-label {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-image: linear-gradient(to right, #485563 0%, #29323c 51%, #485563 100%);  color: white;
+  padding: 5px 8px;
+  border-top-right-radius: 8px; /* ✅ Rounded only at the top-right */
+  border-bottom-right-radius: 0px; /* 🔹 Keep other corners sharp */
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 0px;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.card-wrapper {
+  position: relative;
+  display: inline-block;
+}
+

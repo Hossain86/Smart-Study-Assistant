@@ -36,12 +36,9 @@ const MainApp = () => {
         }`}
       >
         <Routes>
-        <Route path="/pdfToqa" element={
-            <QuestionGenerator />
-         } />
           <Route path="/" element={<HomePage/>}/>
+          <Route path="/pdfToqa" element={<QuestionGenerator />} />
           <Route path="/lab-report-generator" element={<LabReportGenerator />}/>
-          <Route path="/submit" element={ <Test/> }/>
           <Route path="/pdf-summary" element={ <PDFSummary/> }/>
           <Route path="/eassy-generator" element={ <EssayGenerator/> }/>
           <Route path="/topic-explaination" element={ <TopicExplanation/> }/>
@@ -49,6 +46,7 @@ const MainApp = () => {
           <Route path="/study-plan-generator" element={ <StudyPlan/> }/>
           <Route path="/about-me" element={ <Aboutme/> }/>
           <Route path="/contact" element={ <ContactMe/> }/>
+          <Route path="/submit" element={ <Test/> }/>
         </Routes>
       </main>
     </div>

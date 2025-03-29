@@ -21,10 +21,19 @@ export const extractText = async (file: File) => {
 };
 
 // Function to generate questions (MCQ or Narrative)
-export const generateQuestions = async (file: File, questionType: "mcq" | "narrative") => {
+export const generateQuestions = async ({ file, text, questionType, numQuestions, level, difficulty }: any) => {
   const formData = new FormData();
-  formData.append("pdf", file);
+
+  if (file) {
+    formData.append("pdf", file);
+  } else {
+    formData.append("text", text);
+  }
+
   formData.append("question_type", questionType);
+  formData.append("num_questions", String(numQuestions));
+  formData.append("level", level);
+  formData.append("difficulty", difficulty);
 
   try {
     const response = await axios.post(`${API_URL}/generate-questions`, formData, {
