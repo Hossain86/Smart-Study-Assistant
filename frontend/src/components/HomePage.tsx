@@ -36,7 +36,7 @@ const Home: React.FC = () => {
                 <div className="feature-icon">
                 <img src={fileDocument} className="svg-icons" alt="Icon"/>
                 </div>
-                <Card.Title>PDF to MCQ & Narrative Generator</Card.Title>
+                <Card.Title>PDF/Text to MCQ & Narrative Generator</Card.Title>
                 <Card.Text className="card-text">
                   Convert study materials into MCQs, narrative questions, and structured answers effortlessly.
                 </Card.Text>

@@ -88,8 +88,8 @@ const QuestionGenerator = () => {
       <div className="mb-3">
         <label className="form-label">Select Question Type:</label>
         <div className="btn-group w-100">
-          <button className={`btn ${questionType === "mcq" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => setQuestionType("mcq")}>MCQs</button>
-          <button className={`btn ${questionType === "narrative" ? "btn-primary" : "btn-outline-primary"}`} onClick={() => setQuestionType("narrative")}>Narrative</button>
+          <button className={`btn ${questionType === "mcq" ? "btn-success" : "btn-outline-success"}`} onClick={() => setQuestionType("mcq")}>MCQs</button>
+          <button className={`btn ${questionType === "narrative" ? "btn-success" : "btn-outline-success"}`} onClick={() => setQuestionType("narrative")}>Narrative</button>
         </div>
       </div>
 
@@ -121,8 +121,15 @@ const QuestionGenerator = () => {
         </select>
       </div>
 
-      <button onClick={handleGenerateQuestions} disabled={loading} className="btn btn-success w-100">
-        {loading ? "Generating..." : "Generate Questions"}
+      <button onClick={handleGenerateQuestions} disabled={loading} className="btn-grad-blue  w-100">
+        {loading ? (
+    <div className="d-flex align-items-center  justify-content-center">
+    <div className="spinner-border me-2" role="status">
+      <span className="spinner"></span> 
+      </div>
+      Generating...
+    </div>
+  )  : "Generate Questions"}
       </button>
 
       {error && <div className="alert alert-danger mt-3">{error}</div>}

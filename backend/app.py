@@ -78,15 +78,26 @@ def generate_questions():
     elif "text" in request.form:
         extracted_text = request.form.get("text", "")
 
+    # ✅ Log extracted text to check if valid
+    print(f"🔍 Extracted Text: {extracted_text[:200]}")  # Limit to 500 chars
+
     if not extracted_text.strip():
+        print("❌ No valid text provided.")  # Debugging
         return jsonify({"error": "No valid text provided."}), 400
+
+    # ✅ Log input parameters for debugging
+    print(f"🔹 Question Type: {question_type}, Num Questions: {num_questions}, Level: {level}, Difficulty: {difficulty}")
 
     if question_type == "mcq":
         result = generateMCQ(extracted_text, num_questions, level, difficulty)
     else:
         result = generateOpenEnded(extracted_text, num_questions, level, difficulty)
 
+    # ✅ Log generated questions before returning
+    print("📡 Generated Questions:", result)
+
     return jsonify(result)
+
 
 
 @app.route("/summarize-pdf", methods=["POST"])

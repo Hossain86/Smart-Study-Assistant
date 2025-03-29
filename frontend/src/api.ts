@@ -29,7 +29,6 @@ export const generateQuestions = async ({ file, text, questionType, numQuestions
   } else {
     formData.append("text", text);
   }
-
   formData.append("question_type", questionType);
   formData.append("num_questions", String(numQuestions));
   formData.append("level", level);
@@ -40,12 +39,15 @@ export const generateQuestions = async ({ file, text, questionType, numQuestions
       headers: { "Content-Type": "multipart/form-data" },
     });
 
+    console.log("📡 API Response:", response.data);  // 🛠️ Log API response
+
     return response.data;
   } catch (error) {
-    console.error("Error generating questions", error);
+    console.error("❌ Error generating questions:", error);
     throw new Error("Failed to generate questions.");
   }
 };
+
 
 export const summarizePDF = async (file: File) => {
   const formData = new FormData();
