@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios  from "axios";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 const StudyPlan = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState<number | "">("");
   const [educationLevel, setEducationLevel] = useState("");
-  const [examDate, setExamDate] = useState("");
   const [daysLeft, setDaysLeft] = useState<number | "">("");
   const [subjects, setSubjects] = useState<string[]>([]);
   const [preferences, setPreferences] = useState("");
@@ -14,12 +15,22 @@ const StudyPlan = () => {
   const [plan, setPlan] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [copyText, setCopyText] = useState("📋 Copy");
+  const planRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (planRef.current && plan) {
+      planRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [plan]);
+  
+
 
   const subjectOptions = [
+    "Computer Science",
+    "Algorithms",
     "Math",
     "Physics",
-    "Chemistry",
-    "Computer Science",
     "Biology",
     "History",
     "Economics",
@@ -41,11 +52,10 @@ const StudyPlan = () => {
     setPlan("");
 
     try {
-      const response = await axios.post("http://localhost:5000/generate-study-plan", {
+      const response = await axios.post("http://127.0.0.1:5000/generate-study-plan", {
         name,
         age,
         educationLevel,
-        examDate,
         daysLeft,
         subjects,
         preferences,
@@ -53,7 +63,7 @@ const StudyPlan = () => {
       });
       setPlan(response.data.studyPlan || "");
 
-      console.log(response.data);
+      console.log("Study plan data: ",response.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setError(error.response?.data?.message || "Failed to generate study plan.");
@@ -64,7 +74,13 @@ const StudyPlan = () => {
       setLoading(false);
     }
   };
-
+  const handleCopy = () => {
+    if (plan) {
+      navigator.clipboard.writeText(plan);
+      setCopyText("✅ Copied!");
+      setTimeout(() => setCopyText("📋 Copy"), 1000);
+    }
+  };
   return (
     <div className="container my-5">
       <div className="row justify-content-center">
@@ -110,17 +126,6 @@ const StudyPlan = () => {
                     <option value="Undergraduate">Undergraduate</option>
                     <option value="Graduate">Graduate</option>
                   </select>
-                </div>
-
-                <div className="mb-3">
-                  <label className="form-label">Exam Date:</label>
-                  <input
-                    type="date"
-                    value={examDate}
-                    onChange={(e) => setExamDate(e.target.value)}
-                    required
-                    className="form-control"
-                  />
                 </div>
 
                 <div className="mb-3">
@@ -196,9 +201,17 @@ const StudyPlan = () => {
               )}
 
               {plan && (
-                <div className="alert alert-success mt-4">
+                <div ref={planRef} className="mt-4 p-3 bg-light border rounded">
                   <h5>Your Study Plan:</h5>
-                  <ReactMarkdown>{plan}</ReactMarkdown>
+                  <button
+                    onClick={handleCopy}
+                    className="btn btn-outline-secondary mt-2">{copyText} </button>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
+                  >
+                    {plan}
+                  </ReactMarkdown>
                 </div>
               )}
             </div>

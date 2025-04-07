@@ -27,7 +27,7 @@ const TopicExplanation = () => {
       setLoading(false);
     }
   };
-
+  
   return (
     <div className="my-5">
       <div className="row justify-content-center w-100">

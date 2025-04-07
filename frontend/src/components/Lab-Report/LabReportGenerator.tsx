@@ -1,8 +1,7 @@
 // LabReportGenerator.tsx
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   generateLabReport,
-  downloadLabReportDocx,
   downloadFinalDocx,
 } from "../../api";
 import ReactMarkdown from "react-markdown";
@@ -15,9 +14,18 @@ const LabReportGenerator = () => {
   const [labReport, setLabReport] = useState("");
   const [error, setError] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [isDownloading, setIsDownloading] = useState(false);
+  // const [isDownloading, setIsDownloading] = useState(false);
   const [isFinalDownloading, setIsFinalDownloading] = useState(false);
-
+  
+  
+  const planRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top on component mount
+    if (planRef.current && labReport) {
+      planRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [labReport]);
+  
   // State for coverpage details with default values
   const [coverData, setCoverData] = useState({
     department: "Computer Science and Engineering",
@@ -52,29 +60,29 @@ const LabReportGenerator = () => {
     }
   };
 
-  const handleDownloadDocx = async () => {
-    if (!topic.trim()) {
-      setError("Please enter a topic to download the DOCX.");
-      return;
-    }
-    setError("");
-    setIsDownloading(true);
-    try {
-      const blob = await downloadLabReportDocx(topic);
-      const url = window.URL.createObjectURL(new Blob([blob]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "lab_report.docx");
-      document.body.appendChild(link);
-      link.click();
-      link.parentNode?.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (err) {
-      setError("Failed to download the lab report DOCX. Please try again.");
-    } finally {
-      setIsDownloading(false);
-    }
-  };
+  // const handleDownloadDocx = async () => {
+  //   if (!topic.trim()) {
+  //     setError("Please enter a topic to download the DOCX.");
+  //     return;
+  //   }
+  //   setError("");
+  //   setIsDownloading(true);
+  //   try {
+  //     const blob = await downloadLabReportDocx(topic);
+  //     const url = window.URL.createObjectURL(new Blob([blob]));
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.setAttribute("download", "lab_report.docx");
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     link.parentNode?.removeChild(link);
+  //     window.URL.revokeObjectURL(url);
+  //   } catch (err) {
+  //     setError("Failed to download the lab report DOCX. Please try again.");
+  //   } finally {
+  //     setIsDownloading(false);
+  //   }
+  // };
 
   const handleDownloadFinalDocx = async () => {
     if (!topic.trim()) {
@@ -107,18 +115,14 @@ const LabReportGenerator = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-item-center justify-center pt-4 ms-4 me-4">
+    <div className="min-h-screen flex flex-col justify-item-center justify-center pt-2 ms-4 me-4">
       <div className="generate-section">
         <h2 className="mb-4 fw-bold">Lab Report Generator</h2>
         <p className="all-p-text mb-3 fw-bold">
           Enter the topic of your lab report and generate it. You can also
-          download the generated lab report in DOCX format.
+          download the generated lab report with coverpage in DOCX format.
         </p>
-        <p className="all-p-text mb-3">
-          Example Topic: <br />
-          Find out the optimal solution of maximum profit using fractional
-          Knapsack algorithm. <br />
-        </p>
+        
         <div className="input-section">
           <input
             type="text"
@@ -145,7 +149,7 @@ const LabReportGenerator = () => {
             )}
           </button>
           {/* New Download DOCX button */}
-          <button
+          {/* <button
             onClick={handleDownloadDocx}
             disabled={isDownloading || !labReport}
             className="btn-grad-blue fw-bold mt-3 mb-2 px-3 py-2 me-3"
@@ -160,7 +164,7 @@ const LabReportGenerator = () => {
             ) : (
               "Download DOCX without Coverpage"
             )}
-          </button>
+          </button> */}
           {/* New Download Final DOCX button */}
         </div>
 
@@ -333,7 +337,7 @@ const LabReportGenerator = () => {
         </button>
       </div>
       {labReport && (
-        <div className="mt-6 p-4 bg-white rounded shadow-md w-2/3">
+        <div ref={planRef} className="mt-6 p-4 bg-white rounded shadow-md w-2/3">
           <h2 className="text-xl font-semibold mb-2">Generated Lab Report:</h2>
           <ReactMarkdown
             children={labReport}

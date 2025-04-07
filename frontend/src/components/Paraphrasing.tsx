@@ -8,7 +8,7 @@ const ParaphrasingTool: React.FC = () => {
   const [paraphrased, setParaphrased] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const [copyText, setCopyText] = useState("📋 Copy");
   const handleParaphrase = async () => {
     if (!text.trim()) {
       setError("⚠️ Please enter some text to paraphrase.");
@@ -32,7 +32,8 @@ const ParaphrasingTool: React.FC = () => {
   const handleCopy = () => {
     if (paraphrased) {
       navigator.clipboard.writeText(paraphrased);
-      alert("✅ Paraphrased text copied!");
+      setCopyText("✅ Copied!");
+      setTimeout(() => setCopyText("📋 Copy"), 1000); // ⏱ Reset after 1 second
     }
   };
 
@@ -73,7 +74,7 @@ const ParaphrasingTool: React.FC = () => {
               onClick={handleCopy}
               className="btn btn-outline-secondary mt-2"
             >
-              📋 Copy
+              {copyText}
             </button>
             <ReactMarkdown>{paraphrased}</ReactMarkdown>
           </div>
