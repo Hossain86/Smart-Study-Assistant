@@ -52,7 +52,7 @@ const StudyPlan = () => {
     setPlan("");
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/generate-study-plan", {
+      const response = await axios.post("https://web-production-5136.up.railway.app/generate-study-plan", {
         name,
         age,
         educationLevel,
