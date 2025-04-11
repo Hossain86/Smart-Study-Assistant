@@ -32,7 +32,7 @@ const MainApp = () => {
     <div className={`app ${isDarkMode ? "dark-mode" : "light-mode"}`}>
       <Sidebar />
       <main
-        className={`text-align-center pt-5 ${
+        className={`text-align-center pt-0 ${
           isDarkMode ? "dark-mode" : "light-mode"
         }`}
       >

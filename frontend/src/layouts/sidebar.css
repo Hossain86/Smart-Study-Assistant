@@ -2,6 +2,9 @@
   position: absolute;
   z-index: 1000; /* High z-index value to ensure it's on top */
 }
+.top-nav{
+  cursor: pointer;
+}
 .custom-logo {
   max-width: 35px; /* Adjust this value as needed */
   height: auto;

@@ -76,9 +76,9 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="p-4 pt-0">
+    <div className="pt-2">
       
-      <div className="text-center ps-4 pe-4">
+      <div className="text-center pt-4 pb-4">
       <header className="hero-section">
       <motion.h1 className="display-5 fw-bold" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           Supercharge Your Studies with AI <img
@@ -87,12 +87,12 @@ export default function LandingPage() {
               className="ps-4 gif-image"
             />
         </motion.h1>
-          <p className="lead">
+          <p className="lead pe-4 ps-4">
           Unlock your academic potential with our suite of AI tools designed for faster learning, better writing, and effective study management.
           </p>
           <div className="d-flex justify-content-center gap-3 mt-4">
-          <button className="btn-grad-blue fw-bold pe-4 ps-4" style={{ zIndex: 1100, minWidth: '80px', borderRadius:'45px', height:'60px', fontSize:'18px' }}  onClick={() => navigate(`/home`)}>Get Started Free</button>
-          <button className="btn btn-outline-primary btn-lg">Explore Features</button>
+          <button className="btn-grad-blue fw-bold pe-4 ps-4" style={{ zIndex: 1100, minWidth: '80px', borderRadius:'45px', height:'54px', fontSize:'16px' }}  onClick={() => navigate(`/home`)}>Get Started Free</button>
+          <button className="btn-grad-orange fw-bold pe-4 ps-4" style={{ zIndex: 1100, minWidth: '80px', borderRadius:'45px', height:'54px', fontSize:'16px' }} >Explore Features</button>
         </div>
         </header>
       </div>

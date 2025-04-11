@@ -10,11 +10,16 @@
   margin-bottom: min(15px, 5vw);
 }
 .hero-section {
-  padding: min(50px, 5vw);
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding-top: min(20px, 5vw);
+  padding-bottom: min(50px, 5vw);
+  line-height: 2.5;
 }
-
+.hero-section h1{
+  font-size: clamp(30px, 5vw, 45px);
+}
+.hero-section p{
+  font-size: clamp(16px, 4vw, 22px);
+}
 .hero-title {
   font-size: 2rem;
   font-weight: bold;

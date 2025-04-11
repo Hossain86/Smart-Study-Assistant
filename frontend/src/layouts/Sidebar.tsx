@@ -19,7 +19,7 @@ const Sidebar: React.FC = () => {
       <div className="container-fluid p-1 ms-2 me-2"> {/* Use container-fluid for full width */}
 
         {/* Brand Logo and Name */}
-        <div className="d-flex align-items-center cursor-pointer me-3" onClick={() => handleNavigate('/')}>
+        <div className="top-nav d-flex align-items-center me-3" onClick={() => handleNavigate('/')}>
           <img
             className="h-7 img-fluid custom-logo" // Keep your custom class if needed
             src="https://media.giphy.com/media/mrkk6ctjilhoKnFH8d/giphy.gif?cid=790b7611vla8d1bmshd9ce8spgelpl2jojdnpzdyti54ewqh&ep=v1_stickers_search&rid=giphy.gif&ct=s"
@@ -49,7 +49,7 @@ const Sidebar: React.FC = () => {
           {/* Navigation Links (Aligned Left) */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active fw-medium" aria-current="page" href="#" onClick={(e) => { e.preventDefault(); handleNavigate('/'); }}>
+              <a className="nav-link active fw-medium" aria-current="page" href="#" onClick={(e) => { e.preventDefault(); handleNavigate('/home'); }}>
                 Home
               </a>
             </li>

@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="home-container">
+    <div className="home-container pt-4">
       <Container className="text-center">
         {/* <header className="hero-section">
           <h1 className="hero-title">
