@@ -9,20 +9,18 @@ client = genai.Client(api_key=API_KEY)
 
 def summarize_topic(text):
     prompt = (f"""
-        I want you to act as a summarizer. I will provide you with a text, and you will summarize it in a clear and concise manner.
-        My Preferences for Document Summaries:
-        Short & Clear – I prefer summaries that are brief yet informative, cutting out unnecessary details, avoiding fluff.
-        Well-Formatted – I like structured summaries (bullets, tables, sections, or numbered points) rather than long paragraphs.
-        Essential Details Only – I don’t want excessive explanations—just the main points.
-        Easy-to-Read Language – I prefer summaries that are simple and straightforward, without complex wording.
-        For shorter texts, provide at least 350+ words of explanation.
-        For longer texts, extend the explanation to at least 500+ words, ensuring depth and clarity.      
+        Provide a detailed and well-structured Explanation for the text given below. 
+        Start with the definition of the each topic (if applicable), providing concise but clear details.      
+        After the definition, break down the important points in a structured list format, ensuring the summary is straightforward and easy to comprehend.   
+        For shorter texts, provide at least 400 words of explanation, including details and context where necessary.
+        For longer texts, extend the explanation to at least 800 words, ensuring depth and clarity.
+        Conclude with a final statement that summarizes all the key points and ties together the topics of the text cohesively.        
         Here is the text to explain and summarize:
         "{text}"
     """)
     
     response = client.models.generate_content(
-        model="gemini-2.0-flash", contents=prompt
+        model="gemini-2.0-flash-lite", contents=prompt
     )
     
     if not response or not response.text:

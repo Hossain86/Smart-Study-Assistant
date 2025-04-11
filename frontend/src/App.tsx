@@ -14,6 +14,7 @@ import StudyPlan from "./components/StudyPlan";
 import Aboutme from "./components/About-me/Aboutme";
 import ContactMe from "./components/About-me/ContactMe";
 import ParaphrasingTool from "./components/Paraphrasing";
+import LandingPage from "./components/LandingPage";
 
 
 const App = () => {
@@ -36,7 +37,8 @@ const MainApp = () => {
         }`}
       >
         <Routes>
-          <Route path="/" element={<HomePage/>}/>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<HomePage/>}/>
           <Route path="/pdfToqa" element={<QuestionGenerator />} />
           <Route path="/lab-report-generator" element={<LabReportGenerator />}/>
           <Route path="/pdf-summary" element={ <PDFSummary/> }/>

@@ -9,8 +9,8 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-container">
-      <Container className="text-center mt-0">
-        <header className="hero-section">
+      <Container className="text-center">
+        {/* <header className="hero-section">
           <h1 className="hero-title">
             Your Study Helper{" "}
             <img
@@ -22,7 +22,7 @@ const Home: React.FC = () => {
           <p className="hero-subtitle">
             Boost your learning with AI-powered tools for MCQs, assignments, and more!
           </p>
-        </header>
+        </header> */}
 
         {/* Features Section */}
         <Row className="mt-4" style={{ zIndex: -1 }}>
@@ -71,6 +71,23 @@ const Home: React.FC = () => {
         </div>
           </Col>
 
+          <Col md={4} className="card-container">
+            <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
+              <Card.Body>
+                <div className="feature-icon">
+                <img src={studyPlan} className="svg-icons" alt="Icon"/>
+                </div>
+                <Card.Title>Personalized Study Plan</Card.Title>
+                <Card.Text className="card-text">
+                  Generate personalized study schedules based on upcoming exams or projects.
+                </Card.Text>
+                <Button className="btn-grad-orange" onClick={() => navigate(`/study-plan-generator`)}>
+                  Try Now
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+
 
           <Col md={4} className="card-container">
             <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
@@ -89,6 +106,21 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
+          <Col md={4} className="card-container">
+            <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
+              <Card.Body>
+                <div className="feature-icon">
+                <img src={lan} className="svg-icons" alt="Icon"/>
+                </div>
+                <Card.Title>Paraphrasing Tool</Card.Title>
+                <Card.Text className="card-text">
+                Paraphrase text instantly without losing meaning with our free AI-powered paraphrasing tool.</Card.Text>
+                <Button variant="success" onClick={() => navigate(`/paraphrase`)}>
+                  Try Now
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
 
           {/* New Feature Sections */}
           <Col md={4} className="card-container">
@@ -127,38 +159,8 @@ const Home: React.FC = () => {
             </Card>
           </Col>
 
-          <Col md={4} className="card-container">
-            <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
-              <Card.Body>
-                <div className="feature-icon">
-                <img src={lan} className="svg-icons" alt="Icon"/>
-                </div>
-                <Card.Title>Paraphrasing Tool</Card.Title>
-                <Card.Text className="card-text">
-                Paraphrase text instantly without losing meaning with our free AI-powered paraphrasing tool.</Card.Text>
-                <Button variant="success" onClick={() => navigate(`/paraphrase`)}>
-                  Try Now
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col md={4} className="card-container">
-            <Card className="feature-card" style={{ backgroundColor: "transparent", color: "inherit" }}>
-              <Card.Body>
-                <div className="feature-icon">
-                <img src={studyPlan} className="svg-icons" alt="Icon"/>
-                </div>
-                <Card.Title>Personalized Study Plan</Card.Title>
-                <Card.Text className="card-text">
-                  Generate personalized study schedules based on upcoming exams or projects.
-                </Card.Text>
-                <Button className="btn-grad-orange" onClick={() => navigate(`/study-plan-generator`)}>
-                  Try Now
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
+          
+          
         </Row>
       </Container>
 

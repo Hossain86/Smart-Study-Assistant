@@ -78,27 +78,15 @@ def generate_questions():
     elif "text" in request.form:
         extracted_text = request.form.get("text", "")
 
-    # ✅ Log extracted text to check if valid
-    print(f"🔍 Extracted Text: {extracted_text[:200]}")  # Limit to 500 chars
-
     if not extracted_text.strip():
-        print("❌ No valid text provided.")  # Debugging
         return jsonify({"error": "No valid text provided."}), 400
-
-    # ✅ Log input parameters for debugging
-    print(f"🔹 Question Type: {question_type}, Num Questions: {num_questions}, Level: {level}, Difficulty: {difficulty}")
 
     if question_type == "mcq":
         result = generateMCQ(extracted_text, num_questions, level, difficulty)
     else:
         result = generateOpenEnded(extracted_text, num_questions, level, difficulty)
 
-    # ✅ Log generated questions before returning
-    print("📡 Generated Questions:", result)
-
     return jsonify(result)
-
-
 
 @app.route("/summarize-pdf", methods=["POST"])
 def summarize_pdf():
@@ -170,20 +158,19 @@ def study_plan():
     name = data.get("name")
     age = data.get("age")
     education_level = data.get("educationLevel")
-    exam_date = data.get("examDate")
     days_left = data.get("daysLeft")
     subjects = data.get("subjects")
     preferences = data.get("preferences")
     availability = data.get("availability")
 
-    if not all([name, age, education_level, exam_date, days_left, subjects, preferences, availability]):
+    if not all([name, age, education_level, days_left, subjects, preferences, availability]):
         return jsonify({"error": "Missing required fields"}), 400
 
     print(f"Generating study plan for {name}...")  # Debug log
     
-    study_plan = generate_study_plan(name, age, education_level, exam_date, days_left, subjects, preferences, availability)
+    study_plan = generate_study_plan(name, age, education_level, days_left, subjects, preferences, availability)
     
-    return jsonify({"study_plan": study_plan})
+    return jsonify({"studyPlan": study_plan})
 
 
 @app.route("/generate-essay", methods=["POST"])
@@ -364,4 +351,7 @@ def submit_data():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from os import getenv
+    port = int(getenv("PORT", 5000))  # Get the port from Railway
+    app.run(host="0.0.0.0", port=port, debug=False)  # Bind to 0.0.0.0
+
